@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
+import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 
 
 @Injectable({
@@ -18,7 +19,8 @@ export class UsuarioService {
   token: string;
 
   constructor(public http: HttpClient,
-    public router: Router) { 
+    public router: Router,
+    public _subirArchivoService: SubirArchivoService) { 
 
     this.cargarStorage();
   }
@@ -113,6 +115,51 @@ export class UsuarioService {
 
     ));
 
+
+
+  }
+
+  actualizarUsuario(usuario: Usuario) {
+    let url = URL_SERVICIOS + '/usuario/' + usuario._id;
+
+    url += '?token=' + this.token;
+
+    return this.http.put(url, usuario).pipe(map( (resp: any) => {
+
+      let usuarioDB: Usuario = resp.usuario;
+      this.guardarStorage(usuarioDB._id, this.token, usuarioDB);
+      Swal.fire({
+        title: 'Bien hecho',
+        text: 'La información se ha modificado correctamente',
+        icon: 'success',
+        confirmButtonText: 'Aceptar',
+        allowOutsideClick: false
+      });
+      return true;
+    }));
+  }
+
+  cambiarImagen( archivo: File, id: string) {
+
+    this._subirArchivoService.subirArchivo(archivo, 'usuarios', id).then((resp: any) => {
+
+      this.usuario.imagen = resp.usuario.imagen;
+
+      Swal.fire({
+        title: 'Bien hecho' + ' ' + this.usuario.nombre,
+        text: 'La imagen se ha actualizado correctamente',
+        icon: 'success',
+        confirmButtonText: 'Aceptar',
+        allowOutsideClick: false
+      });
+
+      this.guardarStorage(id, this.token, this.usuario);
+
+    }).catch( resp => {
+
+      console.log(resp);
+      
+    });
 
 
   }

@@ -7,3 +7,12 @@
 .pointer {
     cursor: pointer;
 }
+
+.w150 {
+    width: 150px;
+}
+
+.centrar {
+    display: block;
+    margin: auto;
+}
