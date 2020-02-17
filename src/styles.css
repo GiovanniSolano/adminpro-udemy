@@ -38,3 +38,8 @@
 .oculto {
     display: none;
 }
+
+.rad {
+    border-radius: 25px;
+    font-size: small;
+}

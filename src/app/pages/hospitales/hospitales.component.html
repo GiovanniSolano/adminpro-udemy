@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
 
-                <input type="text" (keyup)="buscarUsuario(input.value)" #input class="form-control" placeholder="Buscar usuario...">
+                <input type="text" (keyup)="buscarHospital(input.value)" #input class="form-control" placeholder="Buscar hospital...">
 
             </div>
         </div>
@@ -29,41 +29,43 @@
         <div class="card">
             <div class="card-body">
 
-                <h3 class="card-title">Usuarios registrados ( <small>{{totalRegistros}}</small> )</h3>
+                <div class="text-right">
+                    <button type="button" (click)="agregarHospital()" class="btn btn-primary waves-light waves-effect btn-rounded">
+                    <i class="fa fa-plus"></i>
+                    Agregar Hospital
+                </button>
+                </div>
+                <br>
+
+                <h3 class="card-title">Usuarios registrados ( <small>{{totalRegistros}}</small> )
+
+                </h3>
+
                 <table class="table table-hover">
                     <thead>
                         <tr>
                             <th>Imagen</th>
-                            <th>Correo</th>
-                            <th>Nombre</th>
-                            <th>Role</th>
-                            <th>Auth</th>
+                            <th>Hospital</th>
+
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let usuario of usuarios">
-                            <td class="w70"><img [src]="usuario.imagen | imagen:'usuario'" (click)="mostrarModal(usuario._id)" class="img-50 img-circle pointer" alt=""></td>
-                            <td>{{usuario.email}}</td>
-                            <td>{{usuario.nombre}}</td>
-                            <td><select name="role" class="form-control" [(ngModel)]="usuario.role">
-                                <option value="ADMIN_ROLE">ADMIN_ROLE</option>
-                                <option value="USER_ROLE">USER_ROLE</option>
-                            </select></td>
-                            <td><label *ngIf="usuario.google" class="label label-danger">Google</label>
-                                <label *ngIf="!usuario.google" class="label label-info">Normal</label>
-                            </td>
+                        <tr *ngFor="let hospital of hospitales">
+                            <td class="w70"><img [src]="hospital.imagen | imagen:'hospital'" (click)="mostrarModal(hospital._id)" class="img-50 img-circle pointer" alt=""></td>
+                            <td><input type="text" class="form-control" #inputText [(ngModel)]="hospital.nombre" name="hospital"></td>
                             <td>
-                                <button (click)="guardarUsuario(usuario)" class="btn btn-primary">
+                                <button class="btn btn-primary" (click)="actualizarHospital(hospital)">
                                         <i class="fa fa-save"></i>
                                     </button>
 
-                                <button class="btn btn-danger" (click)="borrarUsuario(usuario)">
+                                <button class="btn btn-danger" (click)="borrarHospital(hospital)">
                                         <i class="fa fa-trash-o"></i>
                                     </button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+
 
                 <button (click)="cambiarDesde(-5)" class="btn btn-secondary">Anteriores</button>
                 <button (click)="cambiarDesde(5)" class="btn btn-secondary">Siguientes</button>

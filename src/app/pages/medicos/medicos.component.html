@@ -1,0 +1,59 @@
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <input type="text" (keyup)="buscarMedico(input.value)" #input class="form-control" placeholder="Buscar médico...">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="text-right">
+                    <button [routerLink]="['/medico', 'nuevo']" routerLinkActive="router-link-active" type="button" class="btn btn-primary waves-light waves-effect btn-rounded">
+                        <i class="fa fa-plus"></i>
+                        Agregar Médico
+                    </button>
+                </div>
+
+                <h3 class="card-title">Médicos registrados (<small> {{_medicosService.totalMedicos}} </small>)</h3>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Médico</th>
+                            <th>Hospital</th>
+                            <th></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let medico of medicos">
+                            <td class="w70"><img [src]="medico.imagen | imagen:'medico'" class="img-50 img-circle pointer" alt=""></td>
+                            <td>{{medico.nombre}}</td>
+                            <td>{{medico.hospital.nombre}}</td>
+                            <td>
+                                <button class="btn btn-primary" [routerLink]="['/medico', medico._id]">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+
+                                <button class="btn btn-danger" (click)="borrarMedico(medico)">
+                                        <i class="fa fa-trash-o"></i>
+                                    </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button (click)="cambiarDesde(-5)" class="btn btn-secondary">Anteriores</button>
+                <button (click)="cambiarDesde(5)" class="btn btn-secondary">Siguientes</button>
+            </div>
+        </div>
+    </div>
+</div>

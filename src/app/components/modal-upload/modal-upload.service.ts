@@ -22,7 +22,7 @@ export class ModalUploadService {
 
   }
 
-  mostrarModal(tipo: string, id: string) {
+  mostrarModal(tipo: string, id: string) {    
 
     this.oculto = '';
     this.id = id;

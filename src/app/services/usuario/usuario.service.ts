@@ -133,7 +133,6 @@ export class UsuarioService {
       this.guardarStorage(usuarioDB._id, this.token, usuarioDB);
       }
 
-      
       Swal.fire({
         title: 'Bien hecho',
         text: 'La información se ha modificado correctamente',

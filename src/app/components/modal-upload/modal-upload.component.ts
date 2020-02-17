@@ -16,7 +16,7 @@ export class ModalUploadComponent implements OnInit {
   imagenTemporal: string | ArrayBuffer;
 
   constructor(public _subirArchivoService: SubirArchivoService,
-    public _modalUploadService: ModalUploadService
+              public _modalUploadService: ModalUploadService
     ) {
     
    }
