@@ -45,9 +45,7 @@ export class MedicoComponent implements OnInit {
 
     this._modalUploadService.notificacion.subscribe(resp => {
 
-      console.log(resp);
       this.medico.imagen = resp.medico.imagen;
-      
     });
 
 
