@@ -12,7 +12,7 @@ export class ProfileComponent implements OnInit {
   usuario: Usuario;
   imagenSubir: File;
 
-  imagenTemporal: string | ArrayBuffer;
+  imagenTemporal: string;
 
   
   constructor(public _usuarioService: UsuarioService) { 
@@ -61,7 +61,7 @@ export class ProfileComponent implements OnInit {
 
     reader.onloadend = () => {
  
-      this.imagenTemporal = reader.result;
+      this.imagenTemporal = reader.result as string;
 
     }
     

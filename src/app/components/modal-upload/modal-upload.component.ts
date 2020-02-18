@@ -13,7 +13,7 @@ export class ModalUploadComponent implements OnInit {
 
   imagenSubir: File;
 
-  imagenTemporal: string | ArrayBuffer;
+  imagenTemporal: string;
 
   constructor(public _subirArchivoService: SubirArchivoService,
               public _modalUploadService: ModalUploadService
@@ -75,7 +75,7 @@ export class ModalUploadComponent implements OnInit {
 
     reader.onloadend = () => {
  
-      this.imagenTemporal = reader.result;
+      this.imagenTemporal = reader.result as string;
 
     }
     

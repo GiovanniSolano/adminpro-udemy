@@ -10,20 +10,23 @@ import { PagesModule } from './pages/pages.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GraficoDonaComponent } from './components/grafico-dona/grafico-dona.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PagesComponent } from './pages/pages.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
+    PagesComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
     ],
   imports: [
     BrowserModule,
-    PagesModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

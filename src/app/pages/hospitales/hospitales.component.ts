@@ -29,8 +29,6 @@ export class HospitalesComponent implements OnInit {
   }
 
   cambiarDesde(valor: number) {
-
-    console.log(valor);
     
     let desde = this.desde + valor;
 
